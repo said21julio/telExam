@@ -1,10 +1,14 @@
-const express = require('express')
-const path = require('path')
-const PORT = process.env.PORT || 5000
 
-express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+const express = require('express');
+const morgan = require('morgan');
+//const path = require('path');
+const PORT = process.env.PORT || 5000;
+const app = express();
+const router = require('./backend/routes/index');
+
+app.use(morgan('dev'));
+app.use(router);
+app.use(express.static('frontend'));
+
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
