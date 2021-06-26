@@ -1,0 +1,80 @@
+
+<div *ngIf="islockScreen" style="position: fixed; z-index: 998; width: 100%; height: 100vh;">
+    <img src="../../assets/loading-opaque.gif" style="position: absolute; z-index: 999; width: 100px; top: 45%; left: 45%;">
+</div>
+
+
+<div class="contenedor">
+
+    <button mat-raised-button routerLink="/">Regresar</button>
+<h1>Radiobases</h1>
+
+<div>
+    <div class="desplegarBloque" style="width: 25%;">
+        
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Buscar por radiobase</mat-label>
+            <input [formControl]="radiobaseForm" type="tel" matInput>
+            <mat-icon (click)="buscarPorRadiobase()"  style="cursor: pointer;" matSuffix>search</mat-icon>
+        </mat-form-field>
+     
+    </div>
+    <div class="desplegarBloque" style="width: 50%;">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Buscar por region</mat-label>
+            <input [formControl]="regionForm" type="tel" matInput>
+            <mat-icon (click)="buscarPorRegion()" style="cursor: pointer;" matSuffix>search</mat-icon>
+        </mat-form-field>
+    </div>
+    <div class="desplegarBloque" style="width: 24%;">
+        <mat-paginator 
+            [length]="numeroRegistros"
+            [pageSize]="50"
+            (page)="cambiarPagina($event)">
+        </mat-paginator>
+    </div>
+</div>
+
+
+    
+<table cellspacing="0" cellpadding="0">
+    <tr class="cabecera">
+      <th>Radiobases</th>
+      <th *ngFor="let dias of diasArreglo" class="rotado">{{ dias }}</th>
+    </tr>
+    <tr *ngFor="let fila of filas">
+        <th class="negritas">{{ fila.radiobase }}</th>
+        <th [ngClass]="{ 'gris':fila.d01==0, 'rojo':fila.d01<=15&&fila.d01>0, 'naranja':fila.d01>15&&fila.d01<=40, 'amarillo':(fila.d01>40&&fila.d01<=90), 'verde':fila.d01>90 }"><label *ngIf="fila.d01 > 0">{{ fila.d01 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d02==0, 'rojo':fila.d02<=15&&fila.d02>0, 'naranja':fila.d02>15&&fila.d02<=40, 'amarillo':(fila.d02>40&&fila.d02<=90), 'verde':fila.d02>90 }"><label *ngIf="fila.d02 > 0">{{ fila.d02 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d03==0, 'rojo':fila.d03<=15&&fila.d03>0, 'naranja':fila.d03>15&&fila.d03<=40, 'amarillo':(fila.d03>40&&fila.d03<=90), 'verde':fila.d03>90 }"><label *ngIf="fila.d03 > 0">{{ fila.d03 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d04==0, 'rojo':fila.d04<=15&&fila.d04>0, 'naranja':fila.d04>15&&fila.d04<=40, 'amarillo':(fila.d04>40&&fila.d04<=90), 'verde':fila.d04>90 }"><label *ngIf="fila.d04 > 0">{{ fila.d04 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d05==0, 'rojo':fila.d05<=15&&fila.d05>0, 'naranja':fila.d05>15&&fila.d05<=40, 'amarillo':(fila.d05>40&&fila.d05<=90), 'verde':fila.d05>90 }"><label *ngIf="fila.d05 > 0">{{ fila.d05 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d06==0, 'rojo':fila.d06<=15&&fila.d06>0, 'naranja':fila.d06>15&&fila.d06<=40, 'amarillo':(fila.d06>40&&fila.d06<=90), 'verde':fila.d06>90 }"><label *ngIf="fila.d06 > 0">{{ fila.d06 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d07==0, 'rojo':fila.d07<=15&&fila.d07>0, 'naranja':fila.d07>15&&fila.d07<=40, 'amarillo':(fila.d07>40&&fila.d07<=90), 'verde':fila.d07>90 }"><label *ngIf="fila.d07 > 0">{{ fila.d07 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d08==0, 'rojo':fila.d08<=15&&fila.d08>0, 'naranja':fila.d08>15&&fila.d08<=40, 'amarillo':(fila.d08>40&&fila.d08<=90), 'verde':fila.d08>90 }"><label *ngIf="fila.d08 > 0">{{ fila.d08 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d09==0, 'rojo':fila.d09<=15&&fila.d09>0, 'naranja':fila.d09>15&&fila.d09<=40, 'amarillo':(fila.d09>40&&fila.d09<=90), 'verde':fila.d09>90 }"><label *ngIf="fila.d09 > 0">{{ fila.d09 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d10==0, 'rojo':fila.d10<=15&&fila.d10>0, 'naranja':fila.d10>15&&fila.d10<=40, 'amarillo':(fila.d10>40&&fila.d10<=90), 'verde':fila.d10>90 }"><label *ngIf="fila.d10 > 0">{{ fila.d10 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d11==0, 'rojo':fila.d11<=15&&fila.d11>0, 'naranja':fila.d11>15&&fila.d11<=40, 'amarillo':(fila.d11>40&&fila.d11<=90), 'verde':fila.d11>90 }"><label *ngIf="fila.d11 > 0">{{ fila.d11 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d12==0, 'rojo':fila.d12<=15&&fila.d12>0, 'naranja':fila.d12>15&&fila.d12<=40, 'amarillo':(fila.d12>40&&fila.d12<=90), 'verde':fila.d12>90 }"><label *ngIf="fila.d12 > 0">{{ fila.d12 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d13==0, 'rojo':fila.d13<=15&&fila.d13>0, 'naranja':fila.d13>15&&fila.d13<=40, 'amarillo':(fila.d13>40&&fila.d13<=90), 'verde':fila.d13>90 }"><label *ngIf="fila.d13 > 0">{{ fila.d13 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d14==0, 'rojo':fila.d14<=15&&fila.d14>0, 'naranja':fila.d14>15&&fila.d14<=40, 'amarillo':(fila.d14>40&&fila.d14<=90), 'verde':fila.d14>90 }"><label *ngIf="fila.d14 > 0">{{ fila.d14 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d15==0, 'rojo':fila.d15<=15&&fila.d15>0, 'naranja':fila.d15>15&&fila.d15<=40, 'amarillo':(fila.d15>40&&fila.d15<=90), 'verde':fila.d15>90 }"><label *ngIf="fila.d15 > 0">{{ fila.d15 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d16==0, 'rojo':fila.d16<=15&&fila.d16>0, 'naranja':fila.d16>15&&fila.d16<=40, 'amarillo':(fila.d16>40&&fila.d16<=90), 'verde':fila.d16>90 }"><label *ngIf="fila.d16 > 0">{{ fila.d16 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d17==0, 'rojo':fila.d17<=15&&fila.d17>0, 'naranja':fila.d17>15&&fila.d17<=40, 'amarillo':(fila.d17>40&&fila.d17<=90), 'verde':fila.d17>90 }"><label *ngIf="fila.d17 > 0">{{ fila.d17 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d18==0, 'rojo':fila.d18<=15&&fila.d18>0, 'naranja':fila.d18>15&&fila.d18<=40, 'amarillo':(fila.d18>40&&fila.d18<=90), 'verde':fila.d18>90 }"><label *ngIf="fila.d18 > 0">{{ fila.d18 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d19==0, 'rojo':fila.d19<=15&&fila.d19>0, 'naranja':fila.d19>15&&fila.d19<=40, 'amarillo':(fila.d19>40&&fila.d19<=90), 'verde':fila.d19>90 }"><label *ngIf="fila.d19 > 0">{{ fila.d19 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d20==0, 'rojo':fila.d20<=15&&fila.d20>0, 'naranja':fila.d20>15&&fila.d20<=40, 'amarillo':(fila.d20>40&&fila.d20<=90), 'verde':fila.d20>90 }"><label *ngIf="fila.d20 > 0">{{ fila.d20 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d21==0, 'rojo':fila.d21<=15&&fila.d21>0, 'naranja':fila.d21>15&&fila.d21<=40, 'amarillo':(fila.d21>40&&fila.d21<=90), 'verde':fila.d21>90 }"><label *ngIf="fila.d21 > 0">{{ fila.d21 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d22==0, 'rojo':fila.d22<=15&&fila.d22>0, 'naranja':fila.d22>15&&fila.d22<=40, 'amarillo':(fila.d22>40&&fila.d22<=90), 'verde':fila.d22>90 }"><label *ngIf="fila.d22 > 0">{{ fila.d22 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d23==0, 'rojo':fila.d23<=15&&fila.d23>0, 'naranja':fila.d23>15&&fila.d23<=40, 'amarillo':(fila.d23>40&&fila.d23<=90), 'verde':fila.d23>90 }"><label *ngIf="fila.d23 > 0">{{ fila.d23 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d24==0, 'rojo':fila.d24<=15&&fila.d24>0, 'naranja':fila.d24>15&&fila.d24<=40, 'amarillo':(fila.d24>40&&fila.d24<=90), 'verde':fila.d24>90 }"><label *ngIf="fila.d24 > 0">{{ fila.d24 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d25==0, 'rojo':fila.d25<=15&&fila.d25>0, 'naranja':fila.d25>15&&fila.d25<=40, 'amarillo':(fila.d25>40&&fila.d25<=90), 'verde':fila.d25>90 }"><label *ngIf="fila.d25 > 0">{{ fila.d25 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d26==0, 'rojo':fila.d26<=15&&fila.d26>0, 'naranja':fila.d26>15&&fila.d26<=40, 'amarillo':(fila.d26>40&&fila.d26<=90), 'verde':fila.d26>90 }"><label *ngIf="fila.d26 > 0">{{ fila.d26 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d27==0, 'rojo':fila.d27<=15&&fila.d27>0, 'naranja':fila.d27>15&&fila.d27<=40, 'amarillo':(fila.d27>40&&fila.d27<=90), 'verde':fila.d27>90 }"><label *ngIf="fila.d27 > 0">{{ fila.d27 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d28==0, 'rojo':fila.d28<=15&&fila.d28>0, 'naranja':fila.d28>15&&fila.d28<=40, 'amarillo':(fila.d28>40&&fila.d28<=90), 'verde':fila.d28>90 }"><label *ngIf="fila.d28 > 0">{{ fila.d28 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d29==0, 'rojo':fila.d29<=15&&fila.d29>0, 'naranja':fila.d29>15&&fila.d29<=40, 'amarillo':(fila.d29>40&&fila.d29<=90), 'verde':fila.d29>90 }"><label *ngIf="fila.d29 > 0">{{ fila.d29 }}</label></th>
+        <th [ngClass]="{ 'gris':fila.d30==0, 'rojo':fila.d30<=15&&fila.d30>0, 'naranja':fila.d30>15&&fila.d30<=40, 'amarillo':(fila.d30>40&&fila.d30<=90), 'verde':fila.d30>90 }"><label *ngIf="fila.d30 > 0">{{ fila.d30 }}</label></th>
+    </tr>
+</table>
+
+</div>
