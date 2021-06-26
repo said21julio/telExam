@@ -20,6 +20,8 @@ function isValidUser (user) {
   var regexAlfabetico = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g;
   var regexEmail = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/g;
   var regexFecha = /\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])*/g;
+  var regexAlfaNumerico = /^[0-9a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[0-9a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[0-9a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g;
+
   if (!user.hasOwnProperty('nombre') || user.nombre.match(regexAlfabetico) === null) {
     console.log('1');
     return false;
@@ -36,7 +38,7 @@ function isValidUser (user) {
     console.log('4');
     return false;
   } 
-  if (!user.hasOwnProperty('domicilio') || user.domicilio.match(regexAlfabetico) === null) {
+  if (!user.hasOwnProperty('domicilio') || user.domicilio.match(regexAlfaNumerico) === null) {
     console.log('5');
     return false;
   } 

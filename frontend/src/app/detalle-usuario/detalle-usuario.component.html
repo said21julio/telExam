@@ -1,3 +1,42 @@
-<p>detalle-usuario works!</p>
 
-<a routerLink="/usuarios">ejercicio 2</a>
+<div class="mainContainer"> 
+
+    <button mat-raised-button routerLink="/usuarios" style="margin-bottom: 20px;">
+        Regresar
+    </button>
+
+    <h1>Detalle</h1>
+
+    <form class="example-form">
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput disabled value="{{currentUser.nombre}}">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput disabled value="{{currentUser.email}}">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Puesto</mat-label>
+            <input matInput disabled value="{{currentUser.puesto}}">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Fecha de nacimiento</mat-label>
+            <input matInput disabled value="{{currentUser.fechanacimiento | date:'dd/MM/yy'}}">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Domicilio</mat-label>
+            <textarea matInput disabled value="{{currentUser.domicilio}}"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Habilidades</mat-label>
+            <input matInput disabled value="{{currentUser.habilidades}}">
+        </mat-form-field>
+    </form>
+</div>

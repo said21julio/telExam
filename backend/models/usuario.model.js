@@ -4,7 +4,10 @@ const pageSize = 50;
 
 const getUsuarios = async (pagina) => {
     var offset = pageSize * pagina;
-    const queryRequest = 'SELECT ' + fields + ' FROM usuario LIMIT ' + pageSize + ' OFFSET ' + offset;
+    var queryRequest = 'SELECT u.id, u.nombre, u.email, u.puesto, u.fechanacimiento, u.domicilio, group_concat(h.habilidad) habilidades FROM usuario as u ';
+    queryRequest += 'left join usuariohabilidad as uh on u.id=uh.usuarioid ';
+    queryRequest += 'left join habilidad as h on h.id=uh.habilidadid ';
+    queryRequest += 'group by u.id LIMIT ' + pageSize + ' OFFSET ' + offset;
     const db = await executeQuery(queryRequest);
     return db;
 };

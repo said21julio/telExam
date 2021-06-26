@@ -1,8 +1,74 @@
-<p>usuarios works!</p>
 
-<a routerLink="/">regresar</a>
+<div *ngIf="islockScreen" style="position: fixed; z-index: 998; width: 100%; height: 100vh;">
+    <img src="../../assets/loading-opaque.gif" style="position: absolute; z-index: 999; width: 100px; top: 45%; left: 45%;">
+</div>
 
-<a routerLink="/crear-usuario">crear</a>
+<div class="mainContainer"> 
 
-<a routerLink="/detalle-usuario">detalle</a>
+    <button mat-raised-button routerLink="/" style="margin-bottom: 20px;">
+        Regresar
+    </button>
 
+    <h1>Usuarios</h1>
+
+    <button mat-raised-button routerLink="/crear-usuario" style="margin-bottom: 15px; float: right;">
+        Registrar usuario
+    </button>
+    <br>
+    <br>
+    <br>
+    <mat-paginator 
+        [length]="numeroRegistros"
+        [pageSize]="50"
+        (page)="cambiarPagina($event)">
+    </mat-paginator>
+
+<!--
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+            <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+            <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+        </ng-container>
+    </table>
+-->
+
+
+
+
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="puesto">
+          <th mat-header-cell *matHeaderCellDef> Puesto </th>
+          <td mat-cell *matCellDef="let element"> {{element.puesto}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="detail">
+            <th mat-header-cell *matHeaderCellDef>
+              
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-flat-button color="accent" (click)="verDetalle(element)">Ver detalle </button>
+            </td>
+        </ng-container>
+        
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+</div>

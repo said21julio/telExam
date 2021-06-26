@@ -1,0 +1,15 @@
+
+.mainContainer {
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+h1{
+   margin: auto;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+  }

@@ -1,4 +1,113 @@
-<p>crear-usuario works!</p>
-<p>crear-usuario works!</p>
 
-<a routerLink="/usuarios">ejercicio 2</a>
+<div *ngIf="islockScreen" style="position: fixed; z-index: 998; width: 100%; height: 100vh;">
+    <img src="../../assets/loading-opaque.gif" style="position: absolute; z-index: 999; width: 100px; top: 45%; left: 45%;">
+</div>
+
+<div class="mainContainer"> 
+
+    <button mat-raised-button routerLink="/usuarios" style="margin-bottom: 20px;">
+        Regresar
+    </button>
+
+    <h1>Registrar usuario</h1>
+
+    <form  class="example-form">
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input [formControl]="nombreForm"  matInput >
+            <mat-error *ngIf="nombreForm.hasError('required')">
+                Campo <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="nombreForm.hasError('pattern')">
+                Solo puede contener <strong>letras</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input [formControl]="emailForm" matInput >
+            <mat-error *ngIf="emailForm.hasError('required')">
+                Campo <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="emailForm.hasError('pattern')">
+                Introduce un correo <strong>válido</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Puesto</mat-label>
+            <input [formControl]="puestoForm" matInput >
+            <mat-error *ngIf="puestoForm.hasError('required')">
+                Campo <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="puestoForm.hasError('pattern')">
+                Solo puede contener <strong>letras</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Fecha de nacimiento</mat-label>
+            <input  [formControl]="fechanacimientoForm" matInput >
+            <mat-error *ngIf="fechanacimientoForm.hasError('required')">
+                Campo <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="fechanacimientoForm.hasError('pattern')">
+                Formato  <strong>inválido</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Domicilio</mat-label>
+            <textarea [formControl]="domicilioForm" matInput ></textarea>
+            <mat-error *ngIf="domicilioForm.hasError('required')">
+                Campo <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="domicilioForm.hasError('pattern')">
+                Solo puede contener <strong>números y letras</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Habilidades</mat-label>
+            <mat-select [formControl]="habilidadesForm" multiple>
+              <mat-select-trigger>
+                {{habilidadesForm.value ? habilidadesForm.value[0] : ''}}
+                <span *ngIf="habilidadesForm.value?.length > 1" class="example-additional-selection">
+                  (+{{habilidadesForm.value.length - 1}} {{habilidadesForm.value?.length === 2 ? 'other' : 'others'}})
+                </span>
+              </mat-select-trigger>
+              <mat-option *ngFor="let habilidadItem of habilidadesData" [value]="habilidadItem.id">{{ habilidadItem.habilidad }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="habilidadesForm.hasError('required')">
+                Campo <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <button (click)="agregarUsuario()" type="button" mat-raised-button style="margin-bottom: 50px;">
+            Agregar usuario
+        </button>
+        <hr>
+    </form>
+
+
+
+    <h2>Agregar una habilidad</h2>
+
+        <mat-form-field  class="example-full-width" appearance="fill">
+            <mat-label>Nombre de la habilidad</mat-label>
+            <input [formControl]="nuevaHabilidadForm" matInput >
+            <mat-error *ngIf="nuevaHabilidadForm.hasError('required')">
+                Para agregar una habilidad este campo es <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="nuevaHabilidadForm.hasError('pattern')">
+                Solo puede contener <strong>letras</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <button (click)="agregarHabilidad()" type="button" mat-raised-button>
+            Agregar habilidad
+        </button>
+        
+    
+</div>
