@@ -1,6 +1,6 @@
 # Examen
 
-Puedes encontrar en el siguiente la implementacón [link](https://telexam.herokuapp.com/)
+Puedes encontrar en el siguiente la implementacón [https://telexam.herokuapp.com](https://telexam.herokuapp.com/)
 
 Deployment: Heroku
 Base datos: Mysql [freesqldatabase](https://www.freesqldatabase.com/)
